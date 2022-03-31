@@ -1,0 +1,11 @@
+.bar-container{
+    position:absolute;
+    left:15%;
+    bottom:100px;
+}
+
+.div-bar{
+    display:inline-block;
+    width:15px;
+    margin:0 5px;
+}
