@@ -23,9 +23,7 @@ class Sort extends React.Component{
         for(let i=0;i<50;i++){
             array.push(randomIntFromInterval(10,500));
         }
-        this.setState({array},()=>{
-            console.log(this.state.array);
-        });
+        this.setState({array});
     }
     
     async bubbleSort(){
@@ -49,6 +47,28 @@ class Sort extends React.Component{
         this.setState({array})
     }
 
+    async selectionSort(){
+        let i,j,min_idx;
+        const array=this.state.array;
+        const ele=document.querySelectorAll(".div-bar")
+        for(i=0;i<array.length-1;i++){
+            min_idx=i;
+            ele[i].style.background = `${SecondaryColor}`;
+            for(j=i+1;j<array.length;j++){
+                ele[j].style.background = `${SecondaryColor}`;
+                if(array[j]<array[min_idx]){
+                    min_idx=j;
+                    await waitforme(50);
+                }
+                ele[j].style.background = `${PrimaryColor}`;
+            }
+            swap(array,min_idx,i);
+            ele[i].style.background = `${PrimaryColor}`;
+            this.setState({array})
+        }
+        this.setState({array})
+    }
+
     render() {
         const {array}=this.state;
         return(
@@ -61,6 +81,7 @@ class Sort extends React.Component{
                 <div className='footer-container'>
                     <button onClick={()=>this.randomArray()} className="button">Reset</button>
                     <button onClick={()=>this.bubbleSort()} className="button">Bubble Sort</button>
+                    <button onClick={()=>this.selectionSort()} className="button">Selection Sort</button>
                 </div>
             </div>
         );
@@ -77,4 +98,9 @@ function waitforme(milisec) {
     }) 
 }
 
+function swap(arr,x,y){
+    let temp=arr[x];
+    arr[x]=arr[y];
+    arr[y]=temp;
+}
 export default Sort;
