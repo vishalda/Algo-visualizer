@@ -69,6 +69,29 @@ class Sort extends React.Component{
         this.setState({array})
     }
 
+    async insertionSort(){
+        let i,j,key;
+        const array=this.state.array;
+        const ele=document.querySelectorAll(".div-bar")
+        for(i=1;i<array.length;i++){
+            key=array[i];
+            j=i;
+            ele[i].style.background = `${SecondaryColor}`;
+            while(array[j-1]>key && j>=1){
+                ele[j].style.background = `${SecondaryColor}`;
+                array[j]=array[j-1];
+                await waitforme(20);
+                ele[j].style.background = `${PrimaryColor}`;
+                ele[i].style.background = `${SecondaryColor}`;
+                j--;
+            }
+            array[j]=key;
+            ele[i].style.background = `${PrimaryColor}`;
+            this.setState({array});
+        }
+        this.setState({array});
+    }
+
     render() {
         const {array}=this.state;
         return(
@@ -82,6 +105,7 @@ class Sort extends React.Component{
                     <button onClick={()=>this.randomArray()} className="button">Reset</button>
                     <button onClick={()=>this.bubbleSort()} className="button">Bubble Sort</button>
                     <button onClick={()=>this.selectionSort()} className="button">Selection Sort</button>
+                    <button onClick={()=>this.insertionSort()} className="button">Insertion Sort</button>
                 </div>
             </div>
         );
@@ -103,4 +127,5 @@ function swap(arr,x,y){
     arr[x]=arr[y];
     arr[y]=temp;
 }
+
 export default Sort;
