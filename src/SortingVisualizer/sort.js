@@ -1,4 +1,3 @@
-import { wait } from '@testing-library/user-event/dist/utils';
 import React from 'react';
 import './CSS/sort.css';
 const PrimaryColor='#EDEDED';
