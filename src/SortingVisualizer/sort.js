@@ -109,7 +109,7 @@ class Sort extends React.Component{
                     this.setState({array:arr});
                     await waitforme(30);
                     ele[j].style.background = `${PrimaryColor}`;
-                    ele[j-1].style.background = `${PrimaryColor}`;
+                    ele[j-gap].style.background = `${PrimaryColor}`;
                 }
                 arr[j] = temp;
                 this.setState({array:arr});
