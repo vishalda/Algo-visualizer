@@ -1,8 +1,8 @@
 import { wait } from '@testing-library/user-event/dist/utils';
 import React from 'react';
 import './CSS/sort.css';
-const PrimaryColor='#00ADB5';
-const SecondaryColor='#EEEEEE';
+const PrimaryColor='#EDEDED';
+const SecondaryColor='#DA0037';
 
 class Sort extends React.Component{
     
@@ -169,6 +169,9 @@ class Sort extends React.Component{
         const {array}=this.state;
         return(
             <div>
+                <div className="header">
+                    <h1>Sorting Visualizer</h1>
+                </div>
                 <div className="bar-container">
                     {array.map((val,key)=>(
                         <div key={key} className="div-bar" style={{backgroundColor:`${PrimaryColor}`, height:`${val}px`}}></div>

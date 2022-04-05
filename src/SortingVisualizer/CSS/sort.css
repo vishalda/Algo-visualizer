@@ -1,12 +1,28 @@
 :root{
-    --backgroundColor: #222831;
-    --footerColor: rgb(23,25,28);
-    --primaryColor: #00ADB5;
-    --secondaryColor: #EEEEEE;
+    --backgroundColor: #171717;
+    --footerColor: #444444;
+    --primaryColor: #EDEDED;
+    --secondaryColor: #DA0037;
 }
 
 body{
     background-color: var(--backgroundColor);
+}
+
+.header{
+    background: linear-gradient(
+        to bottom right,
+        var(--primaryColor),
+        var(--footerColor)
+    );
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:3rem;
+    font-size: large;
 }
 
 .bar-container{
