@@ -1,0 +1,21 @@
+:root{
+    --backgroundColor: #171717;
+    --footerColor: #444444;
+    --primaryColor: #EDEDED;
+    --secondaryColor: #DA0037;
+}
+
+.node{
+    width:25px;
+    height:25px;
+    outline: 1px solid var(--footerColor);
+    display:inline-block;
+}
+
+.node-finish{
+    background-color:var(--secondaryColor);
+}
+
+.node-start{
+    background-color:green;
+}
