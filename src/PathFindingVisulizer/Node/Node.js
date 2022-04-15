@@ -8,15 +8,17 @@ class Node extends React.Component{
             isWall,
             isStart,
             col,
-            row
+            row,
+            onMouseDown
         } = this.props;
 
-        const extraClassNames=isFinish ? 'node-finish' : isStart ? 'node-start' ? isWall : 'node-wall' : '';
+        const extraClassNames=isStart ? 'node-start' : isFinish ? 'node-finish' : isWall ? 'node-wall' : '';
 
         return(
             <td 
             id={`node-${row}-${col}`}
-            className={`node ${extraClassNames}`}></td>
+            className={`node ${extraClassNames}`}
+            onMouseDown={() => onMouseDown(row, col)}></td>
         )
     }
 }

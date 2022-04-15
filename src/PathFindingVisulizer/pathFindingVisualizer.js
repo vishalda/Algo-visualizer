@@ -14,8 +14,8 @@ class PathFinder extends React.Component{
             isRunning:false,
             START_NODE_ROW:5,
             START_NODE_COL:5,
-            FINISH_NODE_ROW:5,
-            FINISH_NODE_COL:15,
+            FINISH_NODE_ROW:20,
+            FINISH_NODE_COL:35,
             COL_COUNT:50,
             ROW_COUNT:30,
             curRow:null,
@@ -58,6 +58,49 @@ class PathFinder extends React.Component{
         }
     }
 
+    getNewGridWithWallToggled=(row,col)=>{
+        const newGrid=this.state.grid.slice();
+        const node=newGrid[row][col];
+        if(!node.isFinish && !node.isStart && node.isWall){
+            const newNode={
+                ...node,
+                isWall:!node.isWall
+            }
+            newGrid[row][col]=node;
+        }
+        console.log(node);
+        return newGrid;
+    }
+
+    handleMouseDown=(row,col)=>{
+        if(!this.state.isRunning){
+            if(document.getElementById(`node-${row}-${col}`).className==="node node-start"){
+                this.setState({
+                    isMousePressed:true,
+                    curCol:col,
+                    curRow:row,
+                    isStartNode:true
+                });
+            }else if(document.getElementById(`node-${row}-${col}`).className==="node node-finish"){
+                this.setState({
+                    isMousePressed:true,
+                    curCol:col,
+                    curRow:row,
+                    isFinishNode:true
+                })
+            }else{
+                const newGrid=this.getNewGridWithWallToggled(row,col);
+                this.setState({
+                    grid:newGrid,
+                    isMousePressed:true,
+                    curCol:col,
+                    curRow:row,
+                    isWallNode:true
+                })
+            }
+        }
+    }
+
     render(){
         return(
             <div>
@@ -69,7 +112,15 @@ class PathFinder extends React.Component{
                                     {row.map((node,nodeIdx)=>{
                                         const {col,row,isFinish,isStart,isWall} = node;
                                         return(
-                                            <Node key={nodeIdx} col={col} row={row} isFinish={isFinish} isStart={isStart} isWall={isWall}></Node>
+                                            <Node 
+                                            key={nodeIdx} 
+                                            col={col} 
+                                            row={row} 
+                                            isFinish={isFinish} 
+                                            isStart={isStart} 
+                                            isWall={isWall}
+                                            onMouseDown={(row,col)=>{this.handleMouseDown(row,col)}}
+                                            ></Node>
                                         );
                                     })}
                                 </tr>
@@ -78,7 +129,7 @@ class PathFinder extends React.Component{
                     </tbody>
                 </table>
             </div>
-        )
+        );
     }
 }
 
