@@ -1,4 +1,6 @@
 import React from 'react';
+import Node from './Node/Node';
+import './pathFindingVisualizer.css';
 
 class PathFinder extends React.Component{
     constructor(props){
@@ -14,8 +16,8 @@ class PathFinder extends React.Component{
             START_NODE_COL:5,
             FINISH_NODE_ROW:5,
             FINISH_NODE_COL:15,
-            COL_COUNT:35,
-            ROW_COUNT:25,
+            COL_COUNT:50,
+            ROW_COUNT:30,
             curRow:null,
             curCol:null
         };
@@ -24,7 +26,6 @@ class PathFinder extends React.Component{
     componentDidMount(){
         const grid=this.InitialGrid();
         this.setState({grid});
-        console.log(grid);
     }
 
     InitialGrid(){
@@ -45,8 +46,10 @@ class PathFinder extends React.Component{
         return{
             row:row,
             col:col,
-            isStart:row===this.state.START_NODE_ROW && col===this.state.START_NODE_COL,
-            isFinish:row===this.start.FINISH_NODE_ROW && col===this.state.FINISH_NODE_COL,
+            isStart:
+            row === this.state.START_NODE_ROW && col === this.state.START_NODE_COL,
+            isFinish:
+            row === this.state.FINISH_NODE_ROW && col === this.state.FINISH_NODE_COL,
             isWall:false,
             isNode:true,
             distance:Infinity,
@@ -57,7 +60,24 @@ class PathFinder extends React.Component{
 
     render(){
         return(
-            <h1>Hello</h1>
+            <div>
+                <table className='grid-container'>
+                    <tbody className='grid'>
+                        {this.state.grid.map((row,rowIdx)=>{
+                            return(
+                                <tr key={rowIdx}>
+                                    {row.map((node,nodeIdx)=>{
+                                        const {col,row,isFinish,isStart,isWall} = node;
+                                        return(
+                                            <Node key={nodeIdx} col={col} row={row} isFinish={isFinish} isStart={isStart} isWall={isWall}></Node>
+                                        );
+                                    })}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }
