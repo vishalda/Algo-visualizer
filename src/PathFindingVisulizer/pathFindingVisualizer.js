@@ -61,14 +61,13 @@ class PathFinder extends React.Component{
     getNewGridWithWallToggled=(row,col)=>{
         const newGrid=this.state.grid.slice();
         const node=newGrid[row][col];
-        if(!node.isFinish && !node.isStart && node.isWall){
+        if(!node.isFinish && !node.isStart){
             const newNode={
                 ...node,
                 isWall:!node.isWall
             }
-            newGrid[row][col]=node;
+            newGrid[row][col]=newNode;
         }
-        console.log(node);
         return newGrid;
     }
 
