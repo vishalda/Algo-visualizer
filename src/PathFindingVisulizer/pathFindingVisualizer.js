@@ -1,5 +1,6 @@
 import React from 'react';
 import Node from './Node/Node';
+import bfs from './Algorithms/bfs';
 import './pathFindingVisualizer.css';
 
 class PathFinder extends React.Component{
@@ -14,8 +15,8 @@ class PathFinder extends React.Component{
             isRunning:false,
             START_NODE_ROW:5,
             START_NODE_COL:5,
-            FINISH_NODE_ROW:20,
-            FINISH_NODE_COL:35,
+            FINISH_NODE_ROW:7,
+            FINISH_NODE_COL:5,
             COL_COUNT:50,
             ROW_COUNT:30,
             curRow:null,
@@ -40,6 +41,13 @@ class PathFinder extends React.Component{
             grid.push(rowArray);
         }
         return grid;
+    }
+
+    toggleIsRunning(){
+        let running=this.state.isRunning;
+        this.setState({
+            isRunning:!running
+        });
     }
 
     createNode=(row,col)=>{
@@ -210,6 +218,23 @@ class PathFinder extends React.Component{
         }
     }
 
+    visualize=(algo)=>{
+        this.clearGrid();
+        this.toggleIsRunning();
+        let grid=this.state.grid;
+        let startNode=grid[this.state.START_NODE_ROW][this.state.START_NODE_COL];
+        let finishNode=grid[this.state.FINISH_NODE_ROW][this.state.FINISH_NODE_COL];
+        let visitedNodes=[];
+        switch (algo){
+            case 'dfs':
+                visitedNodes=bfs(grid,startNode,finishNode);
+                break;
+            default:
+                break;
+        }
+        console.log(visitedNodes);
+    }
+
     render(){
         return(
             <div>
@@ -242,6 +267,7 @@ class PathFinder extends React.Component{
                 <div>
                     <button onClick={()=>{this.clearWalls()}}>Clear Wall</button>
                     <button onClick={()=>{this.clearGrid()}}>Clear Grid</button>
+                    <button onClick={()=>{this.visualize('dfs')}}>DFS</button>
                 </div>
             </div>
         );
