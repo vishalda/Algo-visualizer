@@ -131,11 +131,24 @@ class PathFinder extends React.Component{
         }
     }
 
-    handleMouseUp=()=>{
+    handleMouseUp=(row,col)=>{
         if(!this.state.isRunning){
             this.setState({
                 isMousePressed:false
             });
+            if(this.state.isStartNode){
+                this.setState({
+                    isStartNode:false,
+                    START_NODE_COL:col,
+                    START_NODE_ROW:row
+                })
+            }else if(this.state.isFinishNode){
+                this.setState({
+                    isFinishNode:false,
+                    FINISH_NODE_COL:col,
+                    FINISH_NODE_ROW:row
+                })
+            }
         }
     }
 
@@ -159,7 +172,7 @@ class PathFinder extends React.Component{
                                             isWall={isWall}
                                             onMouseDown={(row,col)=>{this.handleMouseDown(row,col)}}
                                             onMouseEnter={(row,col)=>{this.handleMouseEnter(row,col)}}
-                                            onMouseUp={()=>{this.handleMouseUp()}}
+                                            onMouseUp={(row,col)=>{this.handleMouseUp(row,col)}}
                                             ></Node>
                                         );
                                     })}
