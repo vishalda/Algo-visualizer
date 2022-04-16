@@ -9,7 +9,9 @@ class Node extends React.Component{
             isStart,
             col,
             row,
-            onMouseDown
+            onMouseDown,
+            onMouseEnter,
+            onMouseUp
         } = this.props;
 
         const extraClassNames=isStart ? 'node-start' : isFinish ? 'node-finish' : isWall ? 'node-wall' : '';
@@ -18,7 +20,9 @@ class Node extends React.Component{
             <td 
             id={`node-${row}-${col}`}
             className={`node ${extraClassNames}`}
-            onMouseDown={() => onMouseDown(row, col)}></td>
+            onMouseDown={() => onMouseDown(row, col)}
+            onMouseEnter={() => onMouseEnter(row, col)}
+            onMouseUp={()=>onMouseUp()}></td>
         )
     }
 }

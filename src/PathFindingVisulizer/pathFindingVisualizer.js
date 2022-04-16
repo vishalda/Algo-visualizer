@@ -100,6 +100,45 @@ class PathFinder extends React.Component{
         }
     }
 
+    handleMouseEnter=(row,col)=>{
+        if(!this.state.isRunning){
+            if(this.state.isMousePressed){
+                if(document.getElementById(`node-${row}-${col}`).className==="node node-start"){
+                    this.setState({
+                        isMousePressed:true,
+                        curCol:col,
+                        curRow:row,
+                        isStartNode:true
+                    });
+                }else if(document.getElementById(`node-${row}-${col}`).className==="node node-finish"){
+                    this.setState({
+                        isMousePressed:true,
+                        curCol:col,
+                        curRow:row,
+                        isFinishNode:true
+                    })
+                }else{
+                    const newGrid=this.getNewGridWithWallToggled(row,col);
+                    this.setState({
+                        grid:newGrid,
+                        isMousePressed:true,
+                        curCol:col,
+                        curRow:row,
+                        isWallNode:true
+                    })
+                }
+            }   
+        }
+    }
+
+    handleMouseUp=()=>{
+        if(!this.state.isRunning){
+            this.setState({
+                isMousePressed:false
+            });
+        }
+    }
+
     render(){
         return(
             <div>
@@ -119,6 +158,8 @@ class PathFinder extends React.Component{
                                             isStart={isStart} 
                                             isWall={isWall}
                                             onMouseDown={(row,col)=>{this.handleMouseDown(row,col)}}
+                                            onMouseEnter={(row,col)=>{this.handleMouseEnter(row,col)}}
+                                            onMouseUp={()=>{this.handleMouseUp()}}
                                             ></Node>
                                         );
                                     })}
