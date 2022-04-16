@@ -21,5 +21,13 @@
 }
 
 .node-wall{
+    background-color: var(--footerColor);
+}
+
+.node-visited{
     background-color: var(--primaryColor);
+}
+
+.node-shortest-path{
+    background-color:var(--secondaryColor);
 }

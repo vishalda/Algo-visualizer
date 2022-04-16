@@ -14,9 +14,9 @@ class PathFinder extends React.Component{
             isWallNode:false,
             isRunning:false,
             START_NODE_ROW:5,
-            START_NODE_COL:5,
-            FINISH_NODE_ROW:7,
-            FINISH_NODE_COL:5,
+            START_NODE_COL:25,
+            FINISH_NODE_ROW:25,
+            FINISH_NODE_COL:40,
             COL_COUNT:50,
             ROW_COUNT:30,
             curRow:null,
@@ -218,6 +218,16 @@ class PathFinder extends React.Component{
         }
     }
 
+    getShortestPath=(finishNode)=>{
+        let shortestPath=[];
+        let curNode=finishNode;
+        while(curNode!=null){
+            shortestPath.unshift(curNode);
+            curNode=curNode.previousNode;
+        }
+        return shortestPath;
+    }
+
     visualize=(algo)=>{
         this.clearGrid();
         this.toggleIsRunning();
@@ -232,7 +242,43 @@ class PathFinder extends React.Component{
             default:
                 break;
         }
-        console.log(visitedNodes);
+        const shortestPath=this.getShortestPath(finishNode);
+        shortestPath.push('end');
+        this.animate(shortestPath,visitedNodes);
+    }
+
+    animate=(shortestPath,visitedNodes)=>{
+        for(let i=0;i<=visitedNodes.length;i++){
+            if(visitedNodes.length===i){
+                setTimeout(()=>{
+                    this.animateShortestPath(shortestPath);
+                },i*10);
+            }
+            setTimeout(()=>{
+                const node=visitedNodes[i];
+                const nodeClassName=document.getElementById(`node-${node.row}-${node.col}`).className;
+                if(nodeClassName!=="node node-start" && nodeClassName!=="node node-finish"){
+                    document.getElementById(`node-${node.row}-${node.col}`).className='node node-visited';
+                }
+            },10*i);
+        }
+    }
+
+    animateShortestPath=(shortestPath)=>{
+        for(let i=0;i<shortestPath.length;i++){
+            if(shortestPath[i]==='end'){
+                setTimeout(()=>{
+                    this.toggleIsRunning();
+                },i*50);
+            }
+            setTimeout(()=>{
+                let node=shortestPath[i];
+                const nodeClassName=document.getElementById(`node-${node.row}-${node.col}`).className;
+                if(nodeClassName!=="node node-start" && nodeClassName!=="node node-finish"){
+                    document.getElementById(`node-${node.row}-${node.col}`).className='node node-shortest-path';
+                }
+            },i*40);
+        }
     }
 
     render(){
