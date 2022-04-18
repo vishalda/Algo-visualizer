@@ -1,6 +1,7 @@
 import React from 'react';
 import Node from './Node/Node';
 import bfs from './Algorithms/bfs';
+import dfs from './Algorithms/dfs';
 import './pathFindingVisualizer.css';
 
 class PathFinder extends React.Component{
@@ -13,7 +14,7 @@ class PathFinder extends React.Component{
             isFinishNode:false,
             isWallNode:false,
             isRunning:false,
-            START_NODE_ROW:15,
+            START_NODE_ROW:9,
             START_NODE_COL:10,
             FINISH_NODE_ROW:10,
             FINISH_NODE_COL:40,
@@ -60,6 +61,7 @@ class PathFinder extends React.Component{
             row === this.state.FINISH_NODE_ROW && col === this.state.FINISH_NODE_COL,
             isWall:false,
             isNode:true,
+            isVisited:false,
             distance:Infinity,
             distanceFromFinish:Math.abs(this.state.FINISH_NODE_COL-col)+Math.abs(this.state.FINISH_NODE_ROW-row),
             previousNode:null,
@@ -236,8 +238,11 @@ class PathFinder extends React.Component{
         let finishNode=grid[this.state.FINISH_NODE_ROW][this.state.FINISH_NODE_COL];
         let visitedNodes=[];
         switch (algo){
-            case 'dfs':
+            case 'bfs':
                 visitedNodes=bfs(grid,startNode,finishNode);
+                break;
+            case 'dfs':
+                visitedNodes=dfs(grid,startNode,finishNode);
                 break;
             default:
                 break;
@@ -256,7 +261,7 @@ class PathFinder extends React.Component{
             }
             setTimeout(()=>{
                 const node=visitedNodes[i];
-                const nodeClassName=document.getElementById(`node-${node.row}-${node.col}`).className;
+                let nodeClassName=document.getElementById(`node-${node.row}-${node.col}`).className;
                 if(nodeClassName!=="node node-start" && nodeClassName!=="node node-finish"){
                     document.getElementById(`node-${node.row}-${node.col}`).className='node node-visited';
                 }
@@ -273,7 +278,7 @@ class PathFinder extends React.Component{
             }
             setTimeout(()=>{
                 let node=shortestPath[i];
-                const nodeClassName=document.getElementById(`node-${node.row}-${node.col}`).className;
+                let nodeClassName=document.getElementById(`node-${node.row}-${node.col}`).className;
                 if(nodeClassName!=="node node-start" && nodeClassName!=="node node-finish"){
                     document.getElementById(`node-${node.row}-${node.col}`).className='node node-shortest-path';
                 }
@@ -316,6 +321,7 @@ class PathFinder extends React.Component{
                 <div className='path-finding-footer'>
                     <button onClick={()=>{this.clearWalls()}} className="button">Clear Wall</button>
                     <button onClick={()=>{this.clearGrid()}} className="button">Clear Grid</button>
+                    <button onClick={()=>{this.visualize('bfs')}} className="button">BFS</button>
                     <button onClick={()=>{this.visualize('dfs')}} className="button">DFS</button>
                 </div>
             </div>
