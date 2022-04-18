@@ -39,6 +39,7 @@ function bfs(grid,startNode,endNode){
             }
         }
     }
+    return visitedNodes;
 }
 
 export default bfs;

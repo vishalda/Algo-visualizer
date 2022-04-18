@@ -8,8 +8,9 @@
 .node{
     width:25px;
     height:25px;
-    outline: 1px solid var(--footerColor);
+    outline: 1px solid var(--backgroundColor);
     display:inline-block;
+    background-color: var(--footerColor);
 }
 
 .node-finish{
@@ -21,7 +22,7 @@
 }
 
 .node-wall{
-    background-color: var(--footerColor);
+    background-color: var(--backgroundColor);
 }
 
 .node-visited{

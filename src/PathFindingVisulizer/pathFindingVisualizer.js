@@ -13,12 +13,12 @@ class PathFinder extends React.Component{
             isFinishNode:false,
             isWallNode:false,
             isRunning:false,
-            START_NODE_ROW:5,
-            START_NODE_COL:25,
-            FINISH_NODE_ROW:25,
+            START_NODE_ROW:15,
+            START_NODE_COL:10,
+            FINISH_NODE_ROW:10,
             FINISH_NODE_COL:40,
             COL_COUNT:50,
-            ROW_COUNT:30,
+            ROW_COUNT:25,
             curRow:null,
             curCol:null
         };
@@ -284,6 +284,9 @@ class PathFinder extends React.Component{
     render(){
         return(
             <div>
+                <div className='path-finding-header'>
+                    <h1>Path Finding Visualizer</h1>
+                </div>
                 <table className='grid-container'>
                     <tbody className='grid'>
                         {this.state.grid.map((row,rowIdx)=>{
@@ -310,10 +313,10 @@ class PathFinder extends React.Component{
                         })}
                     </tbody>
                 </table>
-                <div>
-                    <button onClick={()=>{this.clearWalls()}}>Clear Wall</button>
-                    <button onClick={()=>{this.clearGrid()}}>Clear Grid</button>
-                    <button onClick={()=>{this.visualize('dfs')}}>DFS</button>
+                <div className='path-finding-footer'>
+                    <button onClick={()=>{this.clearWalls()}} className="button">Clear Wall</button>
+                    <button onClick={()=>{this.clearGrid()}} className="button">Clear Grid</button>
+                    <button onClick={()=>{this.visualize('dfs')}} className="button">DFS</button>
                 </div>
             </div>
         );
