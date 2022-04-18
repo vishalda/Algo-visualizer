@@ -1,5 +1,3 @@
-import React from 'react';
-
 function bfs(grid,startNode,endNode){
     let nextNode=[startNode];
     const visitedNodes=[];
