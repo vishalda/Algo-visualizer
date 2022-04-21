@@ -4,6 +4,7 @@ import bfs from './Algorithms/bfs';
 import dfs from './Algorithms/dfs';
 import './pathFindingVisualizer.css';
 import dijkstra from './Algorithms/dijkstra';
+import aStar from './Algorithms/aStart';
 
 class PathFinder extends React.Component{
     constructor(props){
@@ -15,9 +16,9 @@ class PathFinder extends React.Component{
             isFinishNode:false,
             isWallNode:false,
             isRunning:false,
-            START_NODE_ROW:9,
+            START_NODE_ROW:5,
             START_NODE_COL:10,
-            FINISH_NODE_ROW:10,
+            FINISH_NODE_ROW:20,
             FINISH_NODE_COL:40,
             COL_COUNT:50,
             ROW_COUNT:25,
@@ -248,6 +249,9 @@ class PathFinder extends React.Component{
             case 'dijkstra':
                 visitedNodes=dijkstra(grid,startNode,finishNode);
                 break;
+            case 'aStar':
+                visitedNodes=aStar(grid,startNode,finishNode);
+                break;
             default:
                 break;
         }
@@ -328,6 +332,7 @@ class PathFinder extends React.Component{
                     <button onClick={()=>{this.visualize('bfs')}} className="button">BFS</button>
                     <button onClick={()=>{this.visualize('dfs')}} className="button">DFS</button>
                     <button onClick={()=>{this.visualize('dijkstra')}} className="button">Dijkstra</button>
+                    <button onClick={()=>{this.visualize('aStar')}} className="button">aStar</button>
                 </div>
             </div>
         );
