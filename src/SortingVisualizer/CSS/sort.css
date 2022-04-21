@@ -67,4 +67,5 @@ body{
 .button:hover{
     color:var(--secondaryColor);
     border-color: var(--secondaryColor);
+    cursor: pointer;
 }

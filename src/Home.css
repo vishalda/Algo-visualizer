@@ -1,0 +1,73 @@
+:root{
+    --backgroundColor: #171717;
+    --footerColor: #444444;
+    --primaryColor: #EDEDED;
+    --secondaryColor: #DA0037;
+}
+
+.container{
+    display:flex;
+    justify-content: center;
+}
+
+.header{
+    background: linear-gradient(
+        to bottom right,
+        var(--primaryColor),
+        var(--footerColor)
+    );
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:1rem;
+    font-size: large;
+}
+
+.link{
+    width:auto;
+    height:auto;
+}
+
+.div-block{
+    width:28em;
+    height:13em;
+    background: linear-gradient(
+        to bottom right,
+        var(--primaryColor),
+        var(--footerColor)
+    );
+    border-radius: 10px;
+    margin:5rem;
+    text-align: center;
+    transition:0.2s;
+}
+
+.div-block:hover{
+    cursor:pointer;
+    box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 black;
+}
+
+.p-block{
+    background: linear-gradient(
+        to bottom right,
+        var(--footerColor),
+        var(--backgroundColor)
+    );
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:1rem;
+    font-size:larger;
+}
+
+.footer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
