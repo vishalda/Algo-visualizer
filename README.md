@@ -19,9 +19,17 @@ The following visualizations are available currently
 - BFS (breadth first search)
 - DFS (depth first search)
 
-## Some algorithms
+## Screenshots
 
-| | |
-|:-------------------------:|:-------------------------:|
-|<img width="1604" alt="" src="https://github.com/LucasPilla/Sorting-Algorithms-Visualizer/blob/master/gifs/bubble_sort.gif?raw=true">  Bubble sort |  <img width="1604" alt="" src="https://github.com/LucasPilla/Sorting-Algorithms-Visualizer/blob/master/gifs/bucket_sort.gif?raw=true"> Bucket sort |
-|<img width="1604" alt="" src="https://github.com/LucasPilla/Sorting-Algorithms-Visualizer/blob/master/gifs/counting_sort.gif?raw=true"> Counting sort |  <img width="1604" alt="" src="https://github.com/LucasPilla/Sorting-Algorithms-Visualizer/blob/master/gifs/heap_sort.gif?raw=true"> Heap sort |
+![screenshot1](./src/Screenshots/SS1.png)
+![screenshot2](./src/Screenshots/SS2.png)
+
+
+## Setup
+
+Make sure you have npm already installed
+
+1. Clone this repository : `git clone https://github.com/vishalda/Algo-visualizer.git`
+2. Move into the directory: `cd Algo-visualizer`
+3. Install packages: `npm install`
+4. Run the project: `npm start`
